@@ -28,5 +28,21 @@ namespace Batch4.Api.StudentResultManagement.BusinessLogic.Services.Course
             var item = _da_Course.GetCourse(id);
             return item;
         }
+
+        public int CreateCourse (CourseModel course)
+        {
+            var result = _da_Course.CreateCourse(course);
+            return result;
+        }
+        public int UpdateCourse(int id, CourseModel course)
+        {
+            return _da_Course.UpdateCourse(id, course);
+        }
+
+        public int DeleteCourseById(int id)
+        {
+            var result = _da_Course.DeleteCourse(id);
+            return result;
+        }
     }
 }

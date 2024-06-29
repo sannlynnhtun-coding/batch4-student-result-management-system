@@ -19,8 +19,42 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Services.Course
         }
         public CourseModel GetCourse(int id)
         {
-            var item = _context.Courses.FirstOrDefault(x =>x.CourseId == id);
+            var item = _context.Courses.FirstOrDefault(x => x.CourseId == id);
             return item!;
+        }
+
+        public int CreateCourse(CourseModel requestModel)
+        {
+            _context.Courses.Add(requestModel);
+            var result = _context.SaveChanges();
+            return result;
+        }
+
+        public int UpdateCourse(int id, CourseModel requestModel)
+        {
+            var item = _context.Courses.FirstOrDefault(x => x.CourseId == id);
+            if (item == null)
+            {
+                return 0;
+            }
+            item.CourseName = requestModel.CourseName;
+            item.Duration = requestModel.Duration;
+            item.Charges = requestModel.Charges;
+            item.Description = requestModel.Description;
+
+            return _context.SaveChanges();
+        }
+
+        public int DeleteCourse(int id)
+        {
+            var item = _context.Courses.FirstOrDefault(x => x.CourseId == id);
+            if (item == null)
+            {
+                return 0;
+            }
+            _context.Courses.Remove(item);
+            var result = _context.SaveChanges();
+            return result;
         }
     }
 }

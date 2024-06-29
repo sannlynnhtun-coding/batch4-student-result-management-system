@@ -19,8 +19,8 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Models
         public decimal Charges { get; set; }
         public string? Description { get; set; }
 
-        public ICollection<StudentCourseModel> StudentCourses { get; set; }
-        public ICollection<ResultModel> Results { get; set; }
+        public ICollection<StudentCourseModel> StudentCourses { get; set; } = new List<StudentCourseModel>();
+        public ICollection<ResultModel> Results { get; set; } = new List<ResultModel>();
 
     }
 }
