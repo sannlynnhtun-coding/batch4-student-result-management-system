@@ -34,6 +34,17 @@ namespace Batch4.Api.StudentResultManagementSystem.Features.Result
             return Ok(result);
         }
 
+        [HttpGet("rollno/{rollNo}/course/{courseId}")]
+        public IActionResult GetResultByRollNoAndCourseId(int rollNo, int courseId)
+        {
+            var result = _bl_Result.GetResultByRollNoAndCourseId(rollNo, courseId);
+            if (result == null)
+            {
+                return NotFound("No result found for the given roll number and course.");
+            }
+            return Ok(result);
+        }
+
         [HttpPost]
         public IActionResult Create(ResultModel result)
         {
