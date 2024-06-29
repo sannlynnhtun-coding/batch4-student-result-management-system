@@ -24,6 +24,12 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Services.Result
             return result!;
         }
 
+        public ResultModel GetResultByRollNoAndCourseId(int rollNo, int courseId)
+        {
+            return _context.Results
+                           .FirstOrDefault(r => r.RollNo == rollNo && r.CourseId == courseId)!;
+        }
+
         public int CreateResult(ResultModel result)
         {
             _context.Results.Add(result);

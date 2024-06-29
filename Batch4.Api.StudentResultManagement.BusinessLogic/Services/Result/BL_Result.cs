@@ -29,6 +29,11 @@ namespace Batch4.Api.StudentResultManagement.BusinessLogic.Services.Result
             return result;
         }
 
+        public ResultModel GetResultByRollNoAndCourseId(int rollNo, int courseId)
+        {
+            return _da_Result.GetResultByRollNoAndCourseId(rollNo, courseId);
+        }
+
         public int CreateResult(ResultModel result)
         {
             var resultCount = _da_Result.CreateResult(result);
