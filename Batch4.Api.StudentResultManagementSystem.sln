@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Batch4.Api.StudentResultManagementSystem", "Batch4.Api.StudentResultManagementSystem\Batch4.Api.StudentResultManagementSystem.csproj", "{E2F83345-E2E5-4B0F-888C-11115871078F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Batch4.Api.StudentResultManagementSystem", "Batch4.Api.StudentResultManagementSystem\Batch4.Api.StudentResultManagementSystem.csproj", "{E2F83345-E2E5-4B0F-888C-11115871078F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Batch4.Api.StudentResultManagement.DataAccess", "Batch4.Api.StudentResultManagement.DataAccess\Batch4.Api.StudentResultManagement.DataAccess.csproj", "{45AC96E4-188F-41A9-9F16-6EB57A482E19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Batch4.Api.StudentResultManagement.BusinessLogic", "Batch4.Api.StudentResultManagement.BusinessLogic\Batch4.Api.StudentResultManagement.BusinessLogic.csproj", "{FB2DA45B-F2F8-44AD-B74F-9798CD017C34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{E2F83345-E2E5-4B0F-888C-11115871078F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2F83345-E2E5-4B0F-888C-11115871078F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2F83345-E2E5-4B0F-888C-11115871078F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45AC96E4-188F-41A9-9F16-6EB57A482E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45AC96E4-188F-41A9-9F16-6EB57A482E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45AC96E4-188F-41A9-9F16-6EB57A482E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45AC96E4-188F-41A9-9F16-6EB57A482E19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB2DA45B-F2F8-44AD-B74F-9798CD017C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB2DA45B-F2F8-44AD-B74F-9798CD017C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB2DA45B-F2F8-44AD-B74F-9798CD017C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB2DA45B-F2F8-44AD-B74F-9798CD017C34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
