@@ -1,7 +1,9 @@
 using Batch4.Api.StudentResultManagement.BusinessLogic.Services.Course;
+using Batch4.Api.StudentResultManagement.BusinessLogic.Services.Result;
 using Batch4.Api.StudentResultManagement.BusinessLogic.Services.Student;
 using Batch4.Api.StudentResultManagement.DataAccess.Db;
 using Batch4.Api.StudentResultManagement.DataAccess.Services.Course;
+using Batch4.Api.StudentResultManagement.DataAccess.Services.Result;
 using Batch4.Api.StudentResultManagement.DataAccess.Services.Student;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,10 @@ builder.Services.AddScoped<BL_Course>();
 //Student
 builder.Services.AddScoped<DA_Student>();
 builder.Services.AddScoped<BL_Student>();
+
+//Result
+builder.Services.AddScoped<DA_Result>();
+builder.Services.AddScoped<BL_Result>();
 
 var app = builder.Build();
 

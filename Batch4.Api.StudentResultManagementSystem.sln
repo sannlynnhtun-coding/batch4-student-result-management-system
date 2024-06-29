@@ -5,9 +5,9 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Batch4.Api.StudentResultManagementSystem", "Batch4.Api.StudentResultManagementSystem\Batch4.Api.StudentResultManagementSystem.csproj", "{E2F83345-E2E5-4B0F-888C-11115871078F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Batch4.Api.StudentResultManagement.DataAccess", "Batch4.Api.StudentResultManagement.DataAccess\Batch4.Api.StudentResultManagement.DataAccess.csproj", "{45AC96E4-188F-41A9-9F16-6EB57A482E19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Batch4.Api.StudentResultManagement.DataAccess", "Batch4.Api.StudentResultManagement.DataAccess\Batch4.Api.StudentResultManagement.DataAccess.csproj", "{45AC96E4-188F-41A9-9F16-6EB57A482E19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Batch4.Api.StudentResultManagement.BusinessLogic", "Batch4.Api.StudentResultManagement.BusinessLogic\Batch4.Api.StudentResultManagement.BusinessLogic.csproj", "{FB2DA45B-F2F8-44AD-B74F-9798CD017C34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Batch4.Api.StudentResultManagement.BusinessLogic", "Batch4.Api.StudentResultManagement.BusinessLogic\Batch4.Api.StudentResultManagement.BusinessLogic.csproj", "{FB2DA45B-F2F8-44AD-B74F-9798CD017C34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
