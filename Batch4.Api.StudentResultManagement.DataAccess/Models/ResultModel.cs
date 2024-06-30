@@ -15,10 +15,10 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Models
 
         public int CourseId { get; set; }
         [ForeignKey("CourseId")]
-        public CourseModel Course { get; set; }
+        public CourseModel? Course { get; set; }
 
         public int StudentId { get; set; }
         [ForeignKey("StudentId")]
-        public StudentModel Student { get; set; }
+        public StudentModel? Student { get; set; }
     }
 }
