@@ -1,4 +1,5 @@
 ﻿using Batch4.Api.StudentResultManagement.BusinessLogic.Services.Student;
+using Batch4.Api.StudentResultManagement.DataAccess.Db;
 using Batch4.Api.StudentResultManagement.DataAccess.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,18 +36,19 @@ namespace Batch4.Api.StudentResultManagementSystem.Features.Student
         }
 
         [HttpPost]
-        public IActionResult Create(StudentModel student)
+        public IActionResult Create(StudentCreateRequest studentCreateRequest)
         {
-            var result = _bl_Student.CreateStudent(student);
+            var result = _bl_Student.CreateStudent(studentCreateRequest.Student,studentCreateRequest.CourseIds);
             string message = result > 0 ? "Saving Successful!" : "Saving Failed!";
             return Ok(message);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, StudentModel student)
+        public IActionResult Update(int id,StudentCreateRequest request)
         {
-            var result = _bl_Student.UpdateStudent(id, student);
-            string message = result > 0 ? "Updating Successful!" : "Updating Failed!";
+            request.Student.StudentId = id;
+            var result = _bl_Student.UpdateStudent(request.Student, request.CourseIds);
+            string message = result > 0 ? "Update Successful!" : "Update Failed!";
             return Ok(message);
         }
 

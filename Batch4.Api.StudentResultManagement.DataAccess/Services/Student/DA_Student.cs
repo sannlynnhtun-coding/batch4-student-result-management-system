@@ -1,5 +1,6 @@
 ﻿using Batch4.Api.StudentResultManagement.DataAccess.Db;
 using Batch4.Api.StudentResultManagement.DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Batch4.Api.StudentResultManagement.DataAccess.Services.Student
 {
@@ -21,47 +22,70 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Services.Student
         public StudentModel GetStudent(int id)
         {
             var item = _context.Students.FirstOrDefault(x => x.StudentId == id);
+
+            var courses = _context.StudentCourses.Where(sc => sc.StudentId == id).Select(c => c.CourseId).ToList();
             return item!;
         }
 
-        public int CreateStudent(StudentModel student)
+        public int CreateStudent(StudentModel student, List<int> courseIds)
         {
             _context.Students.Add(student);
-            var result = _context.SaveChanges();
-            return result;
+            _context.SaveChanges();
 
-        }
-
-        public int UpdateStudent(int id, StudentModel student)
-        {
-            var existingStudent = _context.Students.FirstOrDefault(s => s.StudentId == id);
-            if (existingStudent == null)
+            if (courseIds != null && courseIds.Any())
             {
-                return 0;
+                var studentCourses = courseIds.Select(courseId => new StudentCourseModel
+                {
+                    StudentId = student.StudentId,
+                    CourseId = courseId
+                }).ToList();
+
+                _context.StudentCourses.AddRange(studentCourses);
+                _context.SaveChanges();
             }
 
-            existingStudent.RollNo = student.RollNo;
-            existingStudent.Name = student.Name;
-            existingStudent.GenderStatus = student.GenderStatus;
-            existingStudent.Age = student.Age;
-            existingStudent.DateOfBirth = student.DateOfBirth;
-            existingStudent.UserName = student.UserName;
-            existingStudent.Password = student.Password;
-            existingStudent.PhoneNumber = student.PhoneNumber;
-            existingStudent.Address = student.Address;
-
-            var result = _context.SaveChanges();
-            return result;
+            return student.StudentId;
         }
+
+
+        public int UpdateStudent(StudentModel student, List<int> courseIds)
+        {
+            var oldStudent = _context.Students.FirstOrDefault(x => x.StudentId == student.StudentId);
+
+            if (oldStudent == null)
+                return 0;
+
+            oldStudent.RollNo = student.RollNo;
+            oldStudent.Name = student.Name;
+            oldStudent.GenderStatus = student.GenderStatus;
+            oldStudent.Age = student.Age;
+            oldStudent.DateOfBirth = student.DateOfBirth;
+            oldStudent.UserName = student.UserName;
+            oldStudent.Password = student.Password;
+            oldStudent.PhoneNumber = student.PhoneNumber;
+            oldStudent.Address = student.Address;
+
+            if (courseIds != null && courseIds.Any())
+            {
+                var studentCourses = courseIds.Select(courseId => new StudentCourseModel
+                {
+                    StudentId = student.StudentId,
+                    CourseId = courseId
+                }).ToList();
+
+                _context.StudentCourses.AddRange(studentCourses);
+            }
+
+            return _context.SaveChanges();
+        }
+
 
         public int DeleteStudent(int id)
         {
-            var student = _context.Students.FirstOrDefault(s => s.StudentId == id);
-            if (student == null)
-            {
-                return 0;
-            }
+            var student = _context.Students.FirstOrDefault(x => x.StudentId == id);
 
+            if (student == null)
+                return 0;
             _context.Students.Remove(student);
             var result = _context.SaveChanges();
             return result;

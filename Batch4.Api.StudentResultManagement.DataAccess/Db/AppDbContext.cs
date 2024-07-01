@@ -15,31 +15,10 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Db
         public DbSet<StudentCourseModel> StudentCourses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<StudentCourseModel>()
-                .HasKey(sc => sc.StudentCourseId);
-
-            modelBuilder.Entity<StudentCourseModel>()
-                .HasOne(sc => sc.Student)
-                .WithMany(s => s.StudentCourses)
-                .HasForeignKey(sc => sc.StudentId);
-
-            modelBuilder.Entity<StudentCourseModel>()
-                .HasOne(sc => sc.Course)
-                .WithMany(c => c.StudentCourses)
-                .HasForeignKey(sc => sc.CourseId);
-
             modelBuilder.Entity<ResultModel>(entity =>
             {
                 entity.Property(e => e.Status)
                       .HasConversion<int>();
-
-                entity.HasOne(r => r.Course)
-                      .WithMany(c => c.Results)
-                      .HasForeignKey(r => r.CourseId);
-
-                entity.HasOne(r => r.Student)
-                      .WithMany(s => s.Results)
-                      .HasForeignKey(r => r.StudentId);
             });
 
             modelBuilder.Entity<StudentModel>(entity =>
@@ -50,8 +29,28 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Db
 
             base.OnModelCreating(modelBuilder);
         }
+
+
     }
 
+    public class StudentCreateRequest
+    {
+        public StudentModel Student { get; set; }
+        public List<int> CourseIds { get; set; }
+    }
+
+    public class ResultCreateRequest
+    {
+        public int ResultId { get; set; }
+
+        public decimal Score { get; set; }
+
+        public EnumStatus Status { get; set; }
+
+        public int StudentId { get; set; }
+
+        public int CourseId { get; set; }
+    }
 
 }
 

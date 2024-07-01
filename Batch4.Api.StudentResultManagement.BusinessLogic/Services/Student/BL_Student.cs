@@ -29,16 +29,15 @@ namespace Batch4.Api.StudentResultManagement.BusinessLogic.Services.Student
             return student;
         }
 
-        public int CreateStudent(StudentModel student)
+        public int CreateStudent(StudentModel student, List<int> courseIds)
         {
-            var result = _da_Student.CreateStudent(student);
+            var result = _da_Student.CreateStudent(student,courseIds);
             return result;
         }
 
-        public int UpdateStudent(int id, StudentModel student)
+        public int UpdateStudent(StudentModel student, List<int> courseIds)
         {
-            var result = _da_Student.UpdateStudent(id, student);
-            return result;
+            return _da_Student.UpdateStudent(student, courseIds);
         }
 
         public int DeleteStudent(int id)

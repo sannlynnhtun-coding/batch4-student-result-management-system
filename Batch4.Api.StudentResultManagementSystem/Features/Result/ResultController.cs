@@ -1,7 +1,10 @@
-﻿using Batch4.Api.StudentResultManagement.BusinessLogic.Services.Result;
+﻿using Batch4.Api.StudentResultManagement.BusinessLogic.Services;
+using Batch4.Api.StudentResultManagement.BusinessLogic.Services.Result;
+using Batch4.Api.StudentResultManagement.DataAccess.Db;
 using Batch4.Api.StudentResultManagement.DataAccess.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Batch4.Api.StudentResultManagementSystem.Features.Result
 {
@@ -34,27 +37,39 @@ namespace Batch4.Api.StudentResultManagementSystem.Features.Result
             return Ok(result);
         }
 
-        [HttpGet("rollno/{rollNo}/course/{courseId}")]
-        public IActionResult GetResultByRollNoAndCourseId(int rollNo, int courseId)
+        [HttpGet("rollNo")]
+        public IActionResult GetResultByRollNo(int rollNo, string password)
         {
-            var result = _bl_Result.GetResultByRollNoAndCourseId(rollNo, courseId);
+            var result = _bl_Result.GetResultByRollNo(rollNo, password);
+
             if (result == null)
             {
-                return NotFound("No result found for the given roll number and course.");
+                return NotFound("Result not found for the provided credentials.");
             }
-            return Ok(result);
+
+            var resultResponseModel = new ResultResponseModel
+            {
+                RollNo = result.Student.RollNo,
+                StudentName = result.Student?.Name ?? "Unknown",
+                CourseName = result.Course?.CourseName ?? "Unknown",
+                Score = result.Score,
+                Status = result.Status.ToString()
+            };
+
+            return Ok(resultResponseModel);
         }
 
+
         [HttpPost]
-        public IActionResult Create(ResultModel result)
+        public IActionResult Create(ResultCreateRequest resultCreateRequest)
         {
-            var resultCount = _bl_Result.CreateResult(result);
+            var resultCount = _bl_Result.CreateResult(resultCreateRequest)!;
             string message = resultCount > 0 ? "Saving Successful!" : "Saving Failed!";
             return Ok(message);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, ResultModel result)
+        public IActionResult Update(int id, ResultCreateRequest result)
         {
             var resultCount = _bl_Result.UpdateResult(id, result);
             string message = resultCount > 0 ? "Updating Successful!" : "Updating Failed!";

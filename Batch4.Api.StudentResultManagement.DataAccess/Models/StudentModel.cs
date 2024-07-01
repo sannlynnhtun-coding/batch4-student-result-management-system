@@ -11,7 +11,7 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Models
         public int StudentId { get; set; }
         public int RollNo { get; set; }
         public string? Name { get; set; }
-        public GenderStatus? GenderStatus { get; set; } = null;
+        public GenderStatus? GenderStatus { get; set; }
         public int Age { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string? UserName { get; set; }
@@ -19,8 +19,7 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Models
         public string? PhoneNumber { get; set; }
         public string? Address { get; set; }
 
-        public List<StudentCourseModel> StudentCourses { get; set; } 
-        public List<ResultModel>? Results { get; set; } 
-
+        //public List<StudentCourseModel>? StudentCourses { get; set; }
+        //public List<ResultModel>? Results { get; set; }
     }
 }

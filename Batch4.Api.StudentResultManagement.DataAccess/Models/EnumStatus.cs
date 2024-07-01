@@ -2,7 +2,9 @@
 {
     public enum EnumStatus
     {
-        Passed,
-        NotPassed
+        Passed = 1,
+        Failed = 2,
+        Absent = 3,
+        Incomplete = 4
     }
 }

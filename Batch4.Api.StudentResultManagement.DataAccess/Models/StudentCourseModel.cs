@@ -15,11 +15,7 @@ public class StudentCourseModel
     public int StudentCourseId { get; set; }
 
     public int StudentId { get; set; }
-    [ForeignKey("StudentId")]
-    public StudentModel? Student { get; set; }
 
     public int CourseId { get; set; }
-    [ForeignKey("CourseId")]
-    public CourseModel? Course { get; set; }
 }
 
