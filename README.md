@@ -1,5 +1,3 @@
-# Batch4.Api.StudentResultManagementSystem
-
 # Student Result Management System
 
 ## Overview
@@ -28,55 +26,30 @@ The project is structured into three main layers:
 2. **Business Logic Layer (BLL)**: Contains business logic and coordinates between the DAL and the API controllers.
 3. **API Layer (Controllers)**: Defines API endpoints and maps HTTP requests to BLL methods.
 
-## Models
+## Database Schema
 
-### StudentModel
-        public int StudentId 
-        public int RollNo 
-        public string? Name 
-        public GenderStatus? GenderStatus;
-        public int Age 
-        public DateTime DateOfBirth 
-        public string? UserName 
-        public string? Password 
-        public string? PhoneNumber 
-        public string? Address 
+### Tables
 
-        public ICollection<StudentCourseModel> StudentCourses 
-        public ICollection<ResultModel> Results 
+- **Tbl_Student**: Stores student information.
+- **Tbl_Course**: Stores course information.
+- **Tbl_Result**: Stores result information and links students to their results and courses.
 
-### CourseModel
-        public int CourseId 
-        public string? CourseName 
-        public string? Duration 
-        public decimal Charges 
-        public string? Description 
+## API Endpoints
 
-        public ICollection<StudentCourseModel> StudentCourses  = new List<StudentCourseModel>();
-        public ICollection<ResultModel> Results  = new List<ResultModel>();     
+### Students
 
-### ResultModel
-        public int ResultId 
-        public int RollNo
-        public string? Subject
-        public decimal Score
-        public EnumStatus Status
+- `GET /api/student`: Get all students.
+- `GET /api/student/{id}`: Get a student by ID.
+- `POST /api/student`: Create a new student.
+- `PUT /api/student/{id}`: Update a student by ID.
+- `DELETE /api/student/{id}`: Delete a student by ID.
 
-        public int CourseId
-        [ForeignKey("CourseId")]
-        public CourseModel Course
+### Results
 
-        public int StudentId
-        [ForeignKey("StudentId")]
-        public StudentModel Student
+- `GET /api/result`: Get all results.
+- `GET /api/result/{id}`: Get a result by ID.
+- `GET /api/result/rollno/{rollNo}/course/{courseId}`: Get a result by roll number and course ID.
+- `POST /api/result`: Create a new result.
+- `PUT /api/result/{id}`: Update a result by ID.
+- `DELETE /api/result/{id}`: Delete a result by ID.
 
-### StudentCourse (Join Table)
-
-        
-        public int StudentId 
-        [ForeignKey("StudentId")]
-        public StudentModel? Student 
-
-        public int CourseId 
-        [ForeignKey("CourseId")]
-        public CourseModel? Course 

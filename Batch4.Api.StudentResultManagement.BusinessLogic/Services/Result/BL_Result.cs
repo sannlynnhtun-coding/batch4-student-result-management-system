@@ -1,4 +1,6 @@
-﻿using Batch4.Api.StudentResultManagement.DataAccess.Models;
+﻿using Batch4.Api.StudentResultManagement.DataAccess.Db;
+using Batch4.Api.StudentResultManagement.DataAccess.Models;
+using Batch4.Api.StudentResultManagement.DataAccess.Query;
 using Batch4.Api.StudentResultManagement.DataAccess.Services.Result;
 using System;
 using System.Collections.Generic;
@@ -29,22 +31,30 @@ namespace Batch4.Api.StudentResultManagement.BusinessLogic.Services.Result
             return result;
         }
 
-        public ResultModel GetResultByRollNoAndCourseId(int rollNo, int courseId)
+        public ResultModel GetResultByRollNo(int rollNo, string password)
         {
-            return _da_Result.GetResultByRollNoAndCourseId(rollNo, courseId);
+            return _da_Result.GetResultByRollNo(rollNo, password);
         }
 
-        public int CreateResult(ResultModel result)
+        public int CreateResult(ResultCreateRequest result)
         {
             var resultCount = _da_Result.CreateResult(result);
             return resultCount;
         }
 
-        public int UpdateResult(int id, ResultModel result)
+        public int UpdateResult(int id, ResultCreateRequest resultCreateRequest)
         {
-            var resultCount = _da_Result.UpdateResult(id, result);
-            return resultCount;
+            var resultModel = new ResultModel
+            {
+                Score = resultCreateRequest.Score,
+                Status = resultCreateRequest.Status,
+                StudentId = resultCreateRequest.StudentId,
+                CourseId = resultCreateRequest.CourseId
+            };
+
+            return _da_Result.UpdateResult(id, resultModel);
         }
+
 
         public int DeleteResult(int id)
         {
