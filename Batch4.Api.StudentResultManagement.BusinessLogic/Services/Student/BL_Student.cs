@@ -23,7 +23,7 @@ namespace Batch4.Api.StudentResultManagement.BusinessLogic.Services.Student
             return lst;
         }
 
-        public StudentModel GetStudentById(int id)
+        public StudentResponseModel GetStudentById(int id)
         {
             var student = _da_Student.GetStudent(id);
             return student;
