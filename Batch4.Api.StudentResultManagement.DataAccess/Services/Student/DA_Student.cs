@@ -36,7 +36,7 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Services.Student
                       (sc, c) => new CourseResponseModel
                       {
                           CourseId = c.CourseId,
-                          CourseName = c.CourseName
+                          CourseName = c.CourseName!
                       })
                 .ToList();
 
