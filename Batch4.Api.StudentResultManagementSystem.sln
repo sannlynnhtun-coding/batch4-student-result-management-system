@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Batch4.Api.StudentResultMan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Batch4.Api.StudentResultManagement.BusinessLogic", "Batch4.Api.StudentResultManagement.BusinessLogic\Batch4.Api.StudentResultManagement.BusinessLogic.csproj", "{FB2DA45B-F2F8-44AD-B74F-9798CD017C34}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{CE5C9479-F519-4D77-8D12-8EE519E01C46}"
+	ProjectSection(SolutionItems) = preProject
+		StudentManagementSystem.sql = StudentManagementSystem.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
