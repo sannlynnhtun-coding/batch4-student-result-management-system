@@ -7,7 +7,7 @@ namespace Batch4.Api.StudentResultManagement.DataAccess
         public static SqlConnectionStringBuilder SqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
             DataSource = "ZACK",
-            InitialCatalog = "DotNet",
+            InitialCatalog = "StudentResultManagementSystem",
             UserID = "sa",
             Password = "sa@123",
             TrustServerCertificate = true,
