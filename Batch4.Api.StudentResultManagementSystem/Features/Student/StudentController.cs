@@ -3,6 +3,7 @@ using Batch4.Api.StudentResultManagement.DataAccess.Db;
 using Batch4.Api.StudentResultManagement.DataAccess.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Batch4.Api.StudentResultManagementSystem.Features.Student
 {
@@ -25,15 +26,13 @@ namespace Batch4.Api.StudentResultManagementSystem.Features.Student
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetStudent(int id)
+        public IActionResult GetStudentById(int id)
         {
-            var student = _bl_Student.GetStudentById(id);
-            if (student == null)
-            {
-                return NotFound("Student not found!");
-            }
-            return Ok(student);
+            var item = _bl_Student.GetStudentById(id);
+                
+            return Ok(item);
         }
+
 
         [HttpPost]
         public IActionResult Create(StudentCreateRequest studentCreateRequest)

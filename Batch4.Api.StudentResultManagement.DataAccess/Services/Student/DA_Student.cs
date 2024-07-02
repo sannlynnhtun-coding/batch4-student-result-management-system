@@ -19,13 +19,45 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Services.Student
             return lst;
         }
 
-        public StudentModel GetStudent(int id)
+        public StudentResponseModel GetStudent(int id)
         {
             var item = _context.Students.FirstOrDefault(x => x.StudentId == id);
 
-            var courses = _context.StudentCourses.Where(sc => sc.StudentId == id).Select(c => c.CourseId).ToList();
-            return item!;
+            if (item == null)
+            {
+                return null;
+            }
+
+            var courses = _context.StudentCourses
+                .Where(sc => sc.StudentId == id)
+                .Join(_context.Courses,
+                      sc => sc.CourseId,
+                      c => c.CourseId,
+                      (sc, c) => new CourseResponseModel
+                      {
+                          CourseId = c.CourseId,
+                          CourseName = c.CourseName
+                      })
+                .ToList();
+
+            var studentResponse = new StudentResponseModel
+            {
+                StudentId = item.StudentId,
+                RollNo = item.RollNo,
+                Name = item.Name,
+                GenderStatus = item.GenderStatus,
+                Age = item.Age,
+                DateOfBirth = item.DateOfBirth,
+                UserName = item.UserName,
+                Password = item.Password,
+                PhoneNumber = item.PhoneNumber,
+                Address = item.Address,
+                Courses = courses
+            };
+
+            return studentResponse;
         }
+
 
         public int CreateStudent(StudentModel student, List<int> courseIds)
         {

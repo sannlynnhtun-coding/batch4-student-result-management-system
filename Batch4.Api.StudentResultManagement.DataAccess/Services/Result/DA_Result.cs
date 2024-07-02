@@ -33,7 +33,7 @@ namespace Batch4.Api.StudentResultManagement.DataAccess.Services.Result
                                  .Include(r => r.Student)
                                  .Include(r => r.Course)
                                  .FirstOrDefault();
-            return result;
+            return result!;
         }
 
         public ResultModel GetResultById(int id)
